@@ -4,56 +4,59 @@ Entre na pasta do projeto
 
 Suba os containers do projeto
 ```sh
-docker-compose up -d
+make up para subir os container
 ```
-Acesse o container
+Acesse o container back
 ```sh
-docker-compose exec app bash
+make back
 ```
 
 Instale as dependências do projeto
 ```sh
 composer install
-```
-
-copie o arquivo .env.example e prencha os campos
-
-```sh
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=root
-
-MAIL_MAILER=smtp
-usei o mail trap no teste mas você pode usar qualquer serviço de e-mail
-MAIL_HOST=sandbox.smtp.mailtrap.io 
-MAIL_PORT=2525
-MAIL_USERNAME=seu usuario
-MAIL_PASSWORD=sua senha
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS="seu email"
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-```
 
 Gere a key do projeto Laravel
 ```sh
 php artisan key:generate
 ```
 
-crie um env.testing com as mesmas informações acima, só mude o campo DB_DATABASE=laravel para DB_DATABASE=laraveltestes
+copie o arquivo .env.example e mude para .env 
 
-Acesse o mysql na porta localhost:3388 com o usuario e senha do .env
-Crie o database laravel e o database laraveltestes
+```sh
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+DB_DATABASE=shipmart
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+NOTIFICATION_MAIL='email de sua prefência'
+
+preencha com sua conta do mail trap de preferência 
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME="codigo"
+MAIL_PASSWORD="senha"
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="nao deixe sem nada"
+MAIL_FROM_NAME="não deixe sem nada"
+
+```
+
+crie um env.testing com as mesmas informações acima, só mude o campo DB_CONNECTION=sqlite para DB_CONNECTION=sqliteteste
 
 Acesse o container
 ```sh
-docker-compose exec app bash
+docker-compose exec app bash ou make back
 ```
 
 Rode os comandos abaixo para gerar as tabelas e o dados:
@@ -69,7 +72,12 @@ php artisan jwt:secret
 php artisan jwt:secret --env=testing
 '''
 
-utilize esse comando para acessar o container do front docker exec -it my_frontend /bin/bash
+use o comando para ativar o processamento das filas
+php artisan queue:work --queue="back_emails" 
+
+em outro terminal
+
+utilize esse comando para acessar o container do front docker exec -it my_frontend /bin/bash ou make frontend
 e rode o npm install e npm run dev
 a aplicação vue estará disponível no link http://localhost:9200/
 
