@@ -60,6 +60,7 @@
                 @click.prevent="changeUrl(item.url)"
               >
                 <a 
+                :class="{ 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white': item.active }"
                 v-html="item.label"
                 class="
                 flex 
@@ -109,7 +110,7 @@ export default defineComponent({
         const pagination = ref([]);
 
         const page = ref(route.query.page ?? 1);
-
+        store.page=page;
         store.getContacts(page);
 
         const remove = function (id) {
@@ -136,12 +137,3 @@ export default defineComponent({
 
 
 </script>
-
-<style scoped>
-[aria-current="page"] {
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
-  color: black;
-}
-</style>

@@ -5,7 +5,8 @@ export const useContacts = defineStore('contacts', {
   state: () => {
     return {
         pagination: [],
-        list: []
+        list: [],
+        page: 1
     }
   },
   getters: {

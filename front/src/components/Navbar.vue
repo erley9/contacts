@@ -8,7 +8,7 @@
     </div>
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
-        <RouterLink  class="text-white hover:text-black" to="/contact">{{ $t("nav.menuitem") }}</RouterLink>
+        <RouterLink v-show="$route.path==='/' || $route.path==='/registro' ? false : true"   class="text-white hover:text-black" to="/contact">{{ $t("nav.menuitem") }}</RouterLink>
       </div>
       <div></div>
       <div>

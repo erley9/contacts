@@ -28,7 +28,7 @@ const router = createRouter({
       name: 'contact.register',
       component: FormularioView,
       meta: {
-        "requiresAuth":false
+        "requiresAuth":true
       }
     },
     {
@@ -37,7 +37,7 @@ const router = createRouter({
       component: FormularioView,
       props: true,
       meta: {
-        "requiresAuth":false
+        "requiresAuth":true
       }
     },
     {
@@ -46,7 +46,7 @@ const router = createRouter({
       component: ListContactView,
       props: true,
       meta: {
-        "requiresAuth":false
+        "requiresAuth":true
       }
     }
   ]

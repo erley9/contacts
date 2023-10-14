@@ -22,6 +22,7 @@
 <script>
 import { ref,defineComponent,watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { useContacts } from '@/stores/contactsStore'
 
 export default defineComponent({
   "name": "SelectLanguage",
@@ -31,12 +32,16 @@ export default defineComponent({
       ["en","en-us"]
     ]);
 
+    const store = useContacts()
+
     const i18n = useI18n()
 
     const selectedLocale = ref(i18n.locale.value)
 
     const setLocation = () => {
       i18n.locale.value = selectedLocale.value
+      localStorage.setItem("language", selectedLocale.value)
+      store.getContacts(store.page);
     }
 
     return {

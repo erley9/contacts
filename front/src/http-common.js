@@ -15,6 +15,10 @@ instance.interceptors.request.use(
       config.headers['Authorization'] = `Bearer ${token}`;
     }
 
+    const language = localStorage.getItem("language") || "en";
+
+    config.headers['Accept-Language'] = language;
+
     return config;
   },
 

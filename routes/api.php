@@ -21,6 +21,6 @@ Route::post('/register', [AuthController::class, 'createUser']);
 Route::post('/logout', [AuthController::class,'logout'])->middleware('auth:api');
 
 
-Route::middleware(['auth:api'])->group(function () {
+Route::middleware(['auth:api,setLocale'])->group(function () {
     Route::apiResource('/contact', ContactController::class);
 });
